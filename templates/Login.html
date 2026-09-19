@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <form action="/Login" method="post">
+        <label>User Name:</label>
+        <input type='text' placeholder="User_name" name='User_name' id='UN' required>
+        <br>
+        <label>Password:</label>
+        <input type='password' placeholder="passkey please" name='Password' id="passkey" required>
+        <br>
+        <input type="checkbox" id="showPassword">
+        <label for="showPassword">Show password</label>
+        <br>
+        <button type='submit'>Login</button>
+    </form>
+</body>
+<script>
+
+    function show() {
+        var pass = document.getElementById('showPassword')
+        var key = document.getElementById('passkey')
+        if (pass.checked == true) {
+            key.type = 'text'
+        }
+        else key.type = 'password'
+    }
+    document.getElementById("showPassword").addEventListener('click', show)
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("form");
+
+        if (!form) {
+            console.log("The Form is not loaded");
+        }
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var user_name = document.getElementById('UN').value;
+            var pass = document.getElementById("passkey").value;
+
+            var unvalid = false;
+            var passvalid = false;
+            if (user_name.length < 4) {
+                alert("Username is too short must be atleast 4 letters");
+            }
+            else if (user_name.length > 30) {
+                alert("Username is too long must be atmost 30 letters");
+            }
+
+            else if (/^[A-Za-z0-9]{4,30}$/.test(user_name)) {
+                unvalid = true;
+                console.log("Username is Valid");
+            } else {
+                alert('User name is not valid');
+                console.log("Username is not valid");
+            }
+
+            if (pass.length < 8) {
+                alert("Password is too short must be atleast 8 letters");
+            }
+            else if (/^[A-Za-z0-9_.!@#$%^&*()-]{8,}$/.test(pass)) {
+                passvalid = true;
+                console.log("Password is Valid");
+            } else {
+                alert('Password is not valid');
+                console.log("Password is not valid");
+            }
+
+
+
+            if (unvalid && passvalid) {
+                form.submit();
+            }
+        });
+
+    })
+</script>
+
+</html>

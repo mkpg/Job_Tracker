@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <h1>HOME</h1>
+    <nav class="navbar">
+        <ul class="nav_links">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div>
+        <h1>Welcome {{user_name}}</h1>
+        <p>Total Applications {{applications}}</p>
+        <p>Companies Applied {{company}}</p>
+        <p>Applied {{applied}}</p>
+        <p>In Progress {{progress}}</p>
+        <p>Rejected {{rejected}}</p>
+        <button onclick="window.location.href='/addjob'">add applications</button>
+        <button onclick="Toggletable()">Show Table</button>
+    </div>
+    <table id='Table'>
+        <tr>
+            <th>Job name</th>
+            <th>company</th>
+            <th>status</th>
+            <th>apply_date</th>
+            <th>expected_date</th>
+            <th>Actions</th>
+        </tr>
+        {% for i in all_data %}
+        <tr>
+            <td>{{i[1]}}</td>
+            <td>{{i[2]}}</td>
+            <td>{{i[3]}}</td>
+            <td>{{i[4]}}</td>
+            <td>{{i[5]}}</td>
+            <td>
+                <form action="/edit" method="post">
+                    <input type="hidden" name='job_id' value='{{i[0]}}'>
+                    <button type='submit' id=edit>Edit</button>
+                </form>
+                <form action='/delete' method="post">
+                    <input type="hidden" name='job_id' value='{{i[0]}}'>
+                    <button type='submit' id=delete>Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+<script>
+    function Toggletable() {
+        var x = document.getElementById("Table");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+</html>
