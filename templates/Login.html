@@ -7,19 +7,25 @@
     <title>Login</title>
 </head>
 
-<body>
-    <form action="/Login" method="post">
-        <label>User Name:</label>
-        <input type='text' placeholder="User_name" name='User_name' id='UN' required>
-        <br>
-        <label>Password:</label>
-        <input type='password' placeholder="passkey please" name='Password' id="passkey" required>
-        <br>
-        <input type="checkbox" id="showPassword">
-        <label for="showPassword">Show password</label>
-        <br>
-        <button type='submit'>Login</button>
-    </form>
+<body class="Log_body">
+    <link rel="stylesheet" href="{{url_for('static',filename='Login.css')}}">
+    <div class="Log_div">
+        <form action="/Login" method="post">
+            <label>LOGIN</label>
+            <label>User Name:</label>
+            <input type='text' placeholder="User_name" name='User_name' id='UN' required>
+            <br>
+            <label>Password:</label>
+            <input type='password' placeholder="passkey please" name='Password' id="passkey" required>
+            <br>
+            <div>
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show password</label>
+            </div>
+            <br>
+            <button type='submit'>Login</button>
+        </form>
+    </div>
 </body>
 <script>
 

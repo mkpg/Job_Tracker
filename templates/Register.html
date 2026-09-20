@@ -8,13 +8,35 @@
 </head>
 
 <body>
-    <form action="/Register" method="post">
-        <input type='text' placeholder='Your Name' id='UN' name="User_name" required>
-        <input type='email' placeholder="abc@gmail.com" id='EM' name="Email" required>
-        <input type="password" placeholder="keep this secure" id="PK" name="Password" required>
-        <input type="text" placeholder="1234567890" id="PH" name="Phone_No" required>
-        <button type='submit'> Register account </button>
-    </form>
+    <link rel="stylesheet" href="{{url_for('static',filename='Register.css')}}">
+    <div class="Registerbox">
+        <form action="/Register" method="post">
+            <div class="register-fields">
+                <label class="Reg_Reg">Register</label>
+                <div class="field">
+                    <label>User Name</label>
+                    <input type='text' placeholder='Your Name' id='UN' name="User_name" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type='email' placeholder="abc@gmail.com" id='EM' name="Email" required>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" placeholder="keep this secure" id="PK" name="Password" required>
+                </div>
+                <div class="field">
+                    <label>Phone Number</label>
+                    <input type="text" placeholder="1234567890" id="PH" name="Phone_No" required>
+                </div>
+                <div class="show-password">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword">Show password</label>
+                </div>
+            </div>
+            <button type='submit'> Register account </button>
+        </form>
+    </div>
 </body>
 
 
@@ -25,6 +47,16 @@
 {% endif %}
 
 <script>
+    function show() {
+        var pass = document.getElementById('showPassword')
+        var key = document.getElementById('PK')
+        if (pass.checked == true) {
+            key.type = 'text'
+        }
+        else key.type = 'password'
+    }
+    document.getElementById("showPassword").addEventListener('click', show)
+
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
         if (!form) {

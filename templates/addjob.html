@@ -7,52 +7,89 @@
     <title>Add Applications</title>
 </head>
 
-<body>
-    <h1>Fill your Data Correctly</h1>
-    <form method="post" id='form'>
-        <input type='text' placeholder="Job Name" name='job_name' id="jn" required>
-        <input type='text' placeholder="Company name" name='Company_name' id='cn' required>
-        <label for="status">Status</label>
-        <select name='status' id='status'>
-            <option value='applied'>applied</option>
-            <option value='in-progress'>in-progress</option>
-            <option value='rejected'>rejected</option>
-        </select>
-        <input type='date' placeholder="applied date" name='app_date' id='app_date' required>
-        <input type='date' placeholder="expected date" name='exp_date' id='exp_date' required>
-        <button type='submit'>Add Job</button>
-    </form>
+<body class="job_body">
+    <link rel="stylesheet" href="{{url_for('static',filename='add&edit.css')}}">
+
+    <div class="job_form_box">
+
+        <h1>Fill your Data Correctly</h1>
+
+        <form method="post" id='form' class="job_form">
+
+            <div class="job_field">
+                <label>Job Name</label>
+                <input type='text' placeholder="Job Name" name='job_name' id="jn" required>
+            </div>
+
+            <div class="job_field">
+                <label>Company Name</label>
+                <input type='text' placeholder="Company name" name='Company_name' id='cn' required>
+            </div>
+
+            <div class="job_field">
+                <label for="status">Status</label>
+                <select name='status' id='status'>
+                    <option value='applied'>applied</option>
+                    <option value='in-progress'>in-progress</option>
+                    <option value='rejected'>rejected</option>
+                </select>
+            </div>
+
+            <div class="job_field">
+                <label>Applied Date</label>
+                <input type='date' placeholder="applied date" name='app_date' id='app_date' required>
+            </div>
+
+            <div class="job_field">
+                <label>Expected Date</label>
+                <input type='date' placeholder="expected date" name='exp_date' id='exp_date' required>
+            </div>
+
+            <button type='submit' class="job_submit">Add Job</button>
+
+        </form>
+
+    </div>
+
 </body>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let form = document.getElementById("form");
         form.addEventListener("submit", function (event) {
             event.preventDefault();
+
             var job_n = document.getElementById("jn");
             var company = document.getElementById("cn");
             var status = document.getElementById("status");
             var app_date = document.getElementById("app_date");
             var exp_date = document.getElementById("exp_date");
+
             if (!job_n.value) {
                 alert("Please enter the name of the job");
                 return;
             }
+
             if (!company.value) {
                 alert("Please enter the name of the company");
                 return;
             }
+
             if (!status.value) {
                 alert("Please enter the status");
                 return;
             }
+
             if (!app_date.value) {
                 alert("Please enter the applied date");
                 return;
             }
+
             if (!exp_date.value) {
                 alert("Expected date must be after applied date");
                 return;
             }
+
             if (job_n.value && company.value && status.value && app_date.value && exp_date.value && app_date.value < exp_date.value) {
                 form.submit();
             }

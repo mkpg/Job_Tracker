@@ -1,0 +1,289 @@
+/* --------------------
+   HOME PAGE
+-------------------- */
+
+body.home_body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: linear-gradient(135deg, #E36414, #800200);
+
+    font-family: "XOXO ROMAN D", serif;
+}
+
+
+/* --------------------
+   FULL PAGE CONTAINER
+-------------------- */
+
+.home_container {
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* --------------------
+   TOP NAVBAR
+-------------------- */
+
+.top_bar {
+    width: 100%;
+    height: 105px;
+
+    background: rgba(244, 225, 210, 0.85);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 35px;
+
+    box-sizing: border-box;
+}
+
+
+/* JOB TRACKER */
+
+.site_title {
+    margin: 0;
+
+    font-size: 68px;
+    font-weight: normal;
+
+    color: #5F0F40;
+}
+
+
+/* NAVIGATION */
+
+.nav_links {
+    display: flex;
+
+    gap: 38px;
+
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
+}
+
+.nav_links a {
+    text-decoration: none;
+
+    color: #5F0F40;
+
+    font-size: 24px;
+}
+
+
+/* --------------------
+   MAIN HOME CONTENT
+-------------------- */
+
+.main_content {
+    width: 100%;
+    min-height: calc(100vh - 105px);
+
+    display: grid;
+
+    grid-template-columns: 1.1fr 1fr;
+
+    box-sizing: border-box;
+
+    background: rgba(190, 70, 30, 0.9);
+}
+
+
+/* --------------------
+   LEFT SECTION
+-------------------- */
+
+.left_section {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.welcome_text {
+    margin: 0 0 25px 0;
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: normal;
+}
+
+
+/* --------------------
+   TABLE
+-------------------- */
+
+.table_container {
+    width: 100%;
+    max-height: 430px;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    background: #F4E1D2;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+}
+
+.job_table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.job_table th,
+.job_table td {
+    border: 1px solid #5F0F40;
+
+    padding: 12px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+.job_table th {
+    color: #5F0F40;
+
+    font-size: 18px;
+}
+
+.job_table td {
+    color: #211A17;
+
+    font-size: 20px;
+}
+
+
+/* --------------------
+   EDIT / DELETE
+-------------------- */
+
+.action_buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.edit_btn,
+.delete_btn {
+    width: 85px;
+    height: 32px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #C8B6B6;
+
+    color: #5F0F40;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.edit_btn:hover,
+.delete_btn:hover {
+    background: #5F0F40;
+    color: white;
+}
+
+
+/* --------------------
+   RIGHT SECTION
+-------------------- */
+
+.right_section {
+    padding: 35px 50px;
+
+    box-sizing: border-box;
+
+    color: white;
+}
+
+.total_title {
+    margin: 0 0 35px 0;
+
+    font-size: 32px;
+    font-weight: normal;
+}
+
+
+/* --------------------
+   STATUS
+-------------------- */
+
+.chart_area {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.chart_labels p {
+    margin: 22px 0;
+
+    color: white;
+
+    font-size: 25px;
+}
+
+.stats_box {
+    margin-top: 30px;
+
+    color: white;
+
+    font-size: 22px;
+}
+
+
+/* --------------------
+   BUTTONS
+-------------------- */
+
+.button_group {
+    margin-top: 45px;
+
+    display: flex;
+
+    justify-content: flex-start;
+
+    gap: 20px;
+}
+
+.add_btn,
+.toggle_btn {
+    width: 180px;
+    height: 50px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #5F0F40;
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.add_btn:hover,
+.toggle_btn:hover {
+    background: #0F4C5C;
+}
