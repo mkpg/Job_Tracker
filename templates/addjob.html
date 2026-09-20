@@ -50,7 +50,7 @@
                 return;
             }
             if (!exp_date.value) {
-                alert("Please enter the expected date");
+                alert("Expected date must be after applied date");
                 return;
             }
             if (job_n.value && company.value && status.value && app_date.value && exp_date.value && app_date.value < exp_date.value) {

@@ -16,6 +16,14 @@
         <button type='submit'> Register account </button>
     </form>
 </body>
+
+
+{% if message %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");

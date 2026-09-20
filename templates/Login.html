@@ -47,6 +47,8 @@
 
             var unvalid = false;
             var passvalid = false;
+
+
             if (user_name.length < 4) {
                 alert("Username is too short must be atleast 4 letters");
             }
@@ -57,9 +59,6 @@
             else if (/^[A-Za-z0-9]{4,30}$/.test(user_name)) {
                 unvalid = true;
                 console.log("Username is Valid");
-            } else {
-                alert('User name is not valid');
-                console.log("Username is not valid");
             }
 
             if (pass.length < 8) {
@@ -68,9 +67,6 @@
             else if (/^[A-Za-z0-9_.!@#$%^&*()-]{8,}$/.test(pass)) {
                 passvalid = true;
                 console.log("Password is Valid");
-            } else {
-                alert('Password is not valid');
-                console.log("Password is not valid");
             }
 
 

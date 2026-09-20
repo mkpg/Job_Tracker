@@ -37,30 +37,42 @@ def Register():
         name = request.form.get("User_name")
         email = request.form.get("Email")
         p = request.form.get("Password")
-        if not p :
-            return "Password is required"
-        else:
-            password = generate_password_hash(p)
         ph_no = request.form.get("Phone_No")
-
-        if not name :
-            return "Name is required"
-        if not email:
-            return "Email is required"
+        curs.execute('select email from users where email=%s',(email,))
+        row = curs.fetchone()
         
-        if not ph_no:
-            return "Phone number is required"
-        # HERE INSERT
-        curs.execute("Insert into users (user_name,email,Password_hash,Phone_No) values(%s,%s,%s,%s)",(name,email,password,ph_no))
-        con.commit()
+        curs.execute('select phone_no from users where phone_no=%s',(ph_no,))
+        phr = curs.fetchone()
+        
+        if row:
+            return render_template("Register.html",message = "Email is already exists")
+        elif phr:
+            return render_template("Register.html",message= "Phone Number is already exists")
+        else:
+            if not p :
+                return "Password is required"
+            else:
+                password = generate_password_hash(p)
+            
 
-        # FROM THIS IS THE SESSION I MADE
-        curs.execute("select user_id from users where user_name = %s",(name,))
-        user_id = curs.fetchone()
-        user_id = user_id[0]
-        session['user_name'] = name
-        session['user_id'] = user_id
-        return redirect("/") # I RETURNED TO REDIRECT TO THE INDEXPAGE INSTEAD OF HOME
+            if not name :
+                return "Name is required"
+            if not email:
+                return "Email is required"
+
+            if not ph_no:
+                return "Phone number is required"
+            # HERE INSERT
+            curs.execute("Insert into users (user_name,email,Password_hash,Phone_No) values(%s,%s,%s,%s)",(name,email,password,ph_no))
+            con.commit()
+
+            # FROM THIS IS THE SESSION I MADE
+            curs.execute("select user_id from users where user_name = %s",(name,))
+            user_id = curs.fetchone()
+            user_id = user_id[0]
+            session['user_name'] = name
+            session['user_id'] = user_id
+            return redirect("/") # I RETURNED TO REDIRECT TO THE INDEXPAGE INSTEAD OF HOME
 
     else:
         return render_template("Register.html")
