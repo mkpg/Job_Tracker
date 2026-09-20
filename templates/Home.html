@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="stats_box">
-                    <p>Companies Applied {{company}}</p>
+                    <p>Companies Applied: {%for i in company %}{{i[0]}}, {%endfor%}</p>
                 </div>
 
                 <div class="button_group">
@@ -96,9 +96,9 @@
                         Add Application
                     </button>
 
-                    <button class="toggle_btn" onclick="Toggletable()">
+                    <!-- <button class="toggle_btn" onclick="Toggletable()">
                         Show Table
-                    </button>
+                    </button> -->
                 </div>
 
             </div>
