@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Home.css')}}">
+</head>
+
+<body class="home_body">
+
+    <div class="home_container">
+
+        <div class="top_bar">
+
+            <h1 class="site_title">JOB TRACKER</h1>
+
+            <nav class="navbar">
+                <ul class="nav_links">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div class="main_content">
+
+            <div class="left_section">
+
+                <h2 class="welcome_text">WELCOME {{user_name}}</h2>
+
+                <div class="table_container">
+
+                    <table id="Table" class="job_table">
+
+                        <tr>
+                            <th>Job name</th>
+                            <th>company</th>
+                            <th>status</th>
+                            <th>apply_date</th>
+                            <th>expected_date</th>
+                            <th>Actions</th>
+                        </tr>
+
+                        {% for i in all_data %}
+                        <tr>
+                            <td>{{i[1]}}</td>
+                            <td>{{i[2]}}</td>
+                            <td>{{i[3]}}</td>
+                            <td>{{i[4]}}</td>
+                            <td>{{i[5]}}</td>
+                            <td class="action_buttons">
+
+                                <form action="/edit" method="post">
+                                    <input type="hidden" name="job_id" value="{{i[0]}}">
+                                    <button type="submit" class="edit_btn">Edit</button>
+                                </form>
+
+                                <form action="/delete" method="post">
+                                    <input type="hidden" name="job_id" value="{{i[0]}}">
+                                    <button type="submit" class="delete_btn">Delete</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="right_section">
+
+                <h2 class="total_title">TOTAL APPLICATIONS : {{applications}}</h2>
+
+                <div class="chart_area">
+                    <div class="chart_labels">
+                        <p>Applied {{applied}}</p>
+                        <p>In-Progress {{progress}}</p>
+                        <p>Rejected {{rejected}}</p>
+                    </div>
+
+                </div>
+
+                <div class="stats_box">
+                    <p>Companies Applied: {%for i in company %}{{i[0]}}, {%endfor%}</p>
+                </div>
+
+                <div class="button_group">
+                    <button class="add_btn" onclick="window.location.href='/addjob'">
+                        Add Application
+                    </button>
+
+                    <!-- <button class="toggle_btn" onclick="Toggletable()">
+                        Show Table
+                    </button> -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function Toggletable() {
+        var x = document.getElementById("Table");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+</html>

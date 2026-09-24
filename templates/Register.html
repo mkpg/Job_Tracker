@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="{{url_for('static',filename='Register.css')}}">
+    <div class="Registerbox">
+        <form action="/Register" method="post">
+            <div class="register-fields">
+                <label class="Reg_Reg">Register</label>
+                <div class="field">
+                    <label>User Name</label>
+                    <input type='text' placeholder='Your Name' id='UN' name="User_name" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type='email' placeholder="abc@gmail.com" id='EM' name="Email" required>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" placeholder="keep this secure" id="PK" name="Password" required>
+                </div>
+                <div class="field">
+                    <label>Phone Number</label>
+                    <input type="text" placeholder="1234567890" id="PH" name="Phone_No" required>
+                </div>
+                <div class="show-password">
+                    <input type="checkbox" id="showPassword">
+                    <label for="showPassword">Show password</label>
+                </div>
+            </div>
+            <button type='submit'> Register account </button>
+        </form>
+    </div>
+</body>
+
+
+{% if message %}
+<script>
+    alert("{{message}}")
+</script>
+{% endif %}
+
+<script>
+    function show() {
+        var pass = document.getElementById('showPassword')
+        var key = document.getElementById('PK')
+        if (pass.checked == true) {
+            key.type = 'text'
+        }
+        else key.type = 'password'
+    }
+    document.getElementById("showPassword").addEventListener('click', show)
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        if (!form) {
+            console.error("The form is not there")
+        }
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var user_name = document.getElementById('UN').value;
+            var email = document.getElementById('EM').value;
+            var Pass = document.getElementById('PK').value;
+            var Ph = document.getElementById('PH').value;
+            var passvalid = false;
+            var unvalid = false;
+            var emvalid = false;
+            var phvalid = false;
+
+            if (Pass == "") {
+                alert("Password is required");
+            }
+            else if (Pass.length < 8) {
+                alert("Password must be of 8 characters");
+            }
+            else if (/^[A-Za-z0-9_.!@#$%^&*()-]{8,}$/.test(Pass)) {
+                passvalid = true;
+                console.log("Password is Valid");
+            }
+
+            else {
+                alert('Password is not valid');
+                console.log("Password is not valid");
+            }
+            if (user_name == "") {
+                alert("User name is required");
+            }
+            else if (user_name.length < 4) {
+                alert("User name must be of 4 characters");
+            }
+            else if (/^[A-Za-z0-9]{4,30}$/.test(user_name)) {
+                unvalid = true;
+                console.log("Username is Valid");
+            } else {
+                alert('User name is not valid');
+                console.log("Username is not valid");
+            }
+            if (email == "") {
+                alert("Email is required");
+            }
+
+            else if (/^[A-Za-z0-9._%+-]+@[A-Za-z]+\.[A-Za-z]{2,}$/.test(email)) {
+                emvalid = true;
+                console.log("Email is valid");
+            } else {
+                alert('Email is not valid');
+                console.log("Email is not valid");
+            }
+
+            if (Ph == "") {
+                alert("Phone number is required");
+            }
+
+            else if (Ph.length != 10) {
+                alert("Phone number must be of 10 digits");
+            }
+            else if (/^[0-9]{10}$/.test(Ph)) {
+                phvalid = true;
+                console.log("Phone number is valid");
+            }
+            else {
+                alert('Phone number is not valid');
+                console.log("Phone number is not valid");
+            }
+
+
+            if (passvalid && unvalid && emvalid && phvalid) {
+                form.submit();
+            }
+
+        });
+
+
+    });
+</script>
+
+</html>

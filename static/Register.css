@@ -1,0 +1,176 @@
+/* --------------------
+   REGISTER PAGE
+-------------------- */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(135deg, #E36414, #800200);
+
+    font-family: "XOXO ROMAN D", serif;
+}
+
+
+/* Main Register container */
+
+.Registerbox {
+    width: 900px;
+    height: 470px;
+
+    padding: 35px 70px;
+    box-sizing: border-box;
+
+    background: rgba(244, 225, 210, 0.5);
+
+    border-radius: 15px;
+
+    clip-path: polygon(0 0,
+            58% 0,
+            100% 30%,
+            100% 100%,
+            0 100%);
+}
+
+
+/* Four-field grid */
+
+.register-fields {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 45px;
+    row-gap: 22px;
+}
+
+
+/* Register heading */
+
+.Reg_Reg {
+    grid-column: 1 / 3;
+
+    display: block;
+
+    font-size: 52px;
+    color: #5F0F40;
+
+    margin-bottom: 18px;
+}
+
+
+/* Individual field */
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Labels */
+
+.field label {
+    color: #5F0F40;
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+}
+
+
+/* Input boxes */
+
+.field input {
+    width: 100%;
+    height: 52px;
+
+    box-sizing: border-box;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #eeeeee;
+
+    font-size: 18px;
+
+    outline: none;
+}
+
+
+/* Input focus */
+
+.field input:focus {
+    outline: 2px solid #0F4C5C;
+}
+
+
+/* Show password */
+
+.show-password {
+    grid-column: 1 / 3;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 5px;
+}
+
+
+/* Checkbox */
+
+.show-password input {
+    width: auto;
+    height: auto;
+
+    margin: 0;
+}
+
+
+/* Show password text */
+
+.show-password label {
+    color: #5F0F40;
+
+    font-size: 19px;
+
+    margin: 0;
+}
+
+
+/* Register button */
+
+.Registerbox form>button {
+    display: block;
+
+    width: 180px;
+    height: 52px;
+
+    margin: 22px auto 0;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #5F0F40;
+    color: white;
+
+    font-family: inherit;
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+/* Button hover */
+
+.Registerbox form>button:hover {
+    background: #0F4C5C;
+}

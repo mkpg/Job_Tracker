@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='Profile.css') }}">
+</head>
+
+<body class="profile_body">
+
+    <div class="profile_page">
+
+        <nav class="navbar">
+            <h1>JOB TRACKER</h1>
+
+            <ul class="nav_links">
+                <li><a href="/home">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="profile_content">
+
+            <h2>Profile</h2>
+
+            <div class="profile_fields">
+
+                <div>
+                    <label>User Name :</label>
+                    <input type="text" value="{{user_name}}" readonly>
+                </div>
+
+                <div>
+                    <label>Email :</label>
+                    <input type="text" value="{{email}}" readonly>
+                </div>
+
+                <div>
+                    <label>Password :</label>
+                    <input type="password" value="********" readonly>
+                </div>
+
+                <div>
+                    <label>Ph No :</label>
+                    <input type="text" value="{{phone}}" readonly>
+                </div>
+
+            </div>
+
+            <form action="/psw" method="post">
+                <input type="submit" value="Change Password">
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

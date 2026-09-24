@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job</title>
+</head>
+
+<body class="job_body">
+    <link rel="stylesheet" href="{{url_for('static',filename='add&edit.css')}}">
+
+    <div class="job_form_box">
+
+        <h1>Fill your Data Correctly</h1>
+
+        <form method="post" action="/update" class="job_form">
+
+            <div class="job_field">
+                <label>Job Name</label>
+                <input type='text' placeholder="Job Name" name='job_name' id='job_name' value="{{all_data[1]}}">
+            </div>
+
+            <div class="job_field">
+                <label>Company Name</label>
+                <input type='text' placeholder="Company name" name='Company_name' id='Company_name'
+                    value="{{all_data[2]}}">
+            </div>
+
+            <div class="job_field">
+                <label for="status">Status</label>
+                <select name='status' id='status'>
+                    <option value='applied'>applied</option>
+                    <option value='in-progress'>in-progress</option>
+                    <option value='rejected'>rejected</option>
+                </select>
+            </div>
+
+            <div class="job_field">
+                <label>Applied Date</label>
+                <input type='date' placeholder="applied date" name='app_date' id='app_date' value="{{all_data[4]}}">
+            </div>
+
+            <div class="job_field">
+                <label>Expected Date</label>
+                <input type='date' placeholder="expected date" name='exp_date' id='exp_date' value="{{all_data[5]}}">
+            </div>
+
+            <input type="hidden" name="job_id" id='job_id' value="{{all_data[0]}}">
+
+            <button type='submit' class="job_submit">Update Job</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.querySelector("form")
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault()
+
+            let job_name = document.getElementById("job_name").value
+            let company_name = document.getElementById("Company_name").value
+            let status = document.getElementById("status").value
+            let app_date = document.getElementById("app_date").value
+            let exp_date = document.getElementById("exp_date").value
+
+            if (!job_name) {
+                alert("Please Enter Job Name")
+            }
+            else if (!company_name) {
+                alert("Please Enter Company Name")
+            }
+            else if (!status) {
+                alert("Please Enter Status")
+            }
+            else if (!app_date) {
+                alert("Please Enter Applied Date")
+            }
+            else if (!exp_date) {
+                alert("Please Enter Expected Date")
+            }
+            else {
+                if (app_date < exp_date) {
+                    form.submit()
+                }
+                else {
+                    alert("Please Enter Valid Date")
+                }
+            }
+        });
+    })
+</script>
+
+</html>

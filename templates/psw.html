@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Chg_pass.css')}}">
+</head>
+
+<body>
+    {%if not Verified%}
+    <h1>Change Your Password</h1>
+    <form action="psw_verify" method="post" id="verifyForm">
+        <input type="password" name="Current" id="Current" placeholder="Current Password" required>
+        <button type="submit">Current Password</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("verifyForm");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                let current = document.getElementById("Current").value;
+
+                if (!current.trim()) {
+                    alert("Please Enter Current Password");
+                    return;
+                }
+                form.submit();
+            });
+        });
+    </script>
+
+    {% endif %}
+    {% if Verified %}
+    <form action="psw_update" method="post" id="updateForm">
+        <input type='password' name="new_pass" id="new_pass" placeholder='New Password' required>
+        <input type='password' name="new_pass_verify" id="new_pass_verify" placeholder='Verify New Password' required>
+        <button type='submit'>Update Password</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("updateForm");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let new_pass = document.getElementById("new_pass").value;
+                let new_pass_verify = document.getElementById("new_pass_verify").value;
+                let new_passvalid = false;
+                let verify = false;
+
+                // Validate New Password Strength
+                if (new_pass == "") {
+                    alert("Password is required");
+                    return;
+                }
+                else if (new_pass.length < 8) {
+                    alert("Password must be at least 8 characters long");
+                    return;
+                }
+                else if (/^[A-Za-z0-9_.!@#$%^&*()-]{8,}$/.test(new_pass)) {
+                    new_passvalid = true;
+                }
+                else {
+                    alert('Password contains invalid characters');
+                    return;
+                }
+
+                // Validate Password Matching
+                if (!new_pass_verify) {
+                    alert("Please Confirm Your New Password");
+                    return;
+                }
+                else if (new_pass_verify !== new_pass) {
+                    alert("Passwords do not match");
+                    return;
+                }
+                else {
+                    verify = true;
+                }
+
+                // Submit if all conditions pass
+                if (new_passvalid && verify) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+
+    {% endif %}
+</body>
+
+</html>
