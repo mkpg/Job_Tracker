@@ -1,0 +1,18 @@
+# Node / n8n local files
+node_modules/
+.n8n/
+data/
+
+# Environment / secrets
+.env
+.env.*
+*.env
+
+# Credentials / local exports
+credentials/
+secrets/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/

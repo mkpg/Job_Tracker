@@ -1,0 +1,64 @@
+{
+  "name": "Job Interview Reminder - Sanitized Example",
+  "nodes": [
+    {
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "purpose": "Run the workflow once every day at the configured time.",
+      "configuration_example": {
+        "interval": "days",
+        "daysBetweenTriggers": 1,
+        "timezone": "America/New_York",
+        "triggerTime": "06:55"
+      }
+    },
+    {
+      "name": "Execute a SQL query",
+      "type": "n8n-nodes-base.postgres",
+      "purpose": "Read job applications and the recipient email from PostgreSQL/Neon.",
+      "sql_example": "SELECT job_id, job_name, company, expected_date, reminder_sent, email\nFROM job_applications\nWHERE reminder_sent = FALSE;",
+      "credential": "YOUR_POSTGRES_CREDENTIAL"
+    },
+    {
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "purpose": "Continue only when the expected date is within the reminder window and reminder_sent is false.",
+      "condition_example": "expected_date is near $now.plus({ days: 3 })"
+    },
+    {
+      "name": "Send a message",
+      "type": "n8n-nodes-base.gmail",
+      "purpose": "Send the interview reminder email.",
+      "to_example": "{{ $('Execute a SQL query').item.json.email }}",
+      "subject_example": "Interview Reminder",
+      "message_example": "Hi,\n\nPrepare well, you are near.\n\nCompany: {{ $('Execute a SQL query').item.json.company }}\nPosition: {{ $('Execute a SQL query').item.json.job_name }}\nExpected Date: {{ $('Execute a SQL query').item.json.expected_date }}",
+      "credential": "YOUR_GMAIL_CREDENTIAL"
+    },
+    {
+      "name": "Execute a SQL query 1",
+      "type": "n8n-nodes-base.postgres",
+      "purpose": "Mark the reminder as sent so the same application is not emailed again.",
+      "sql_example": "UPDATE job_applications\nSET reminder_sent = TRUE\nWHERE job_id = {{ $('Execute a SQL query').item.json.job_id }};",
+      "credential": "YOUR_POSTGRES_CREDENTIAL"
+    }
+  ],
+  "connections": [
+    [
+      "Schedule Trigger",
+      "Execute a SQL query"
+    ],
+    [
+      "Execute a SQL query",
+      "If"
+    ],
+    [
+      "If (true)",
+      "Send a message"
+    ],
+    [
+      "Send a message",
+      "Execute a SQL query 1"
+    ]
+  ],
+  "security_note": "This is a sanitized documentation example. It intentionally contains no real credentials, passwords, OAuth tokens, API keys, personal email addresses, or database connection strings."
+}
